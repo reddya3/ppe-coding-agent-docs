@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TSPCM-5811 Test Scenarios</title>
+  <style>
+    :root {
+      --bg: #f4efe7;
+      --ink: #1e1b18;
+      --panel: #fffdf9;
+      --line: #dfd1be;
+      --accent: #a3222a;
+      --accent-soft: #f7e4e6;
+      --ok: #1f6f4a;
+      --warn: #8a5c00;
+      --muted: #5e5448;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 20%, #fff7eb 0%, transparent 40%),
+        radial-gradient(circle at 90% 10%, #fdebec 0%, transparent 35%),
+        linear-gradient(180deg, #f8f3ec 0%, var(--bg) 100%);
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    .hero {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 8px 24px rgba(54, 37, 18, 0.08);
+      animation: rise 350ms ease-out;
+    }
+
+    .hero h1 {
+      margin: 0 0 6px;
+      font-size: clamp(1.4rem, 2.4vw, 2rem);
+      letter-spacing: 0.2px;
+    }
+
+    .hero p { margin: 4px 0; color: var(--muted); }
+
+    .grid {
+      margin-top: 16px;
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      animation: rise 420ms ease-out;
+    }
+
+    .card h3 { margin: 0 0 8px; font-size: 1rem; }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 2px 10px;
+      font-size: 0.78rem;
+      margin-right: 6px;
+      margin-bottom: 6px;
+      background: #fff;
+    }
+
+    .p0 { border-color: #b71f2a; color: #b71f2a; }
+    .p1 { border-color: #ba6f00; color: #8a5c00; }
+    .p2 { border-color: #2b6f48; color: #1f6f4a; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      animation: rise 520ms ease-out;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      padding: 10px;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background: var(--accent-soft);
+      color: #4a0f13;
+      font-weight: 700;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .section-title {
+      margin-top: 22px;
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .note {
+      margin-top: 12px;
+      background: #fff8e8;
+      border: 1px solid #efd8a7;
+      border-left: 5px solid #c27a00;
+      padding: 10px 12px;
+      border-radius: 10px;
+      color: #61460e;
+      animation: rise 640ms ease-out;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 680px) {
+      th, td { font-size: 0.86rem; padding: 8px; }
+      .hero, .card { border-radius: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <h1>TSPCM-5811 Test Scenarios</h1>
+      <p><strong>Story:</strong> Student Late Payment Notification - Past Due Modal - MyEvolve Page</p>
+      <p><strong>Scope:</strong> Modal display gating, content fidelity, CTA routing, urgency rule, access-revocation context, and late-window lifecycle behavior.</p>
+      <p><strong>Risk:</strong> High (payment conversion + access revocation communication).</p>
+    </section>
+
+    <section class="grid" aria-label="Coverage Summary">
+      <article class="card">
+        <h3>Priority Mix</h3>
+        <span class="badge p0">P0: 9</span>
+        <span class="badge p1">P1: 5</span>
+        <span class="badge p2">P2: 2</span>
+      </article>
+      <article class="card">
+        <h3>Category Mix</h3>
+        <span class="badge">Happy Path</span>
+        <span class="badge">Alternate Path</span>
+        <span class="badge">Negative</span>
+        <span class="badge">Boundary</span>
+        <span class="badge">Integration</span>
+        <span class="badge">Non-Functional</span>
+      </article>
+      <article class="card">
+        <h3>TC Readiness</h3>
+        <span class="badge">TC-Ready: Yes (15)</span>
+        <span class="badge">Needs Clarification (1)</span>
+      </article>
+    </section>
+
+    <h2 class="section-title">Scenario List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Category</th>
+          <th>Priority</th>
+          <th>Title</th>
+          <th>Preconditions</th>
+          <th>Input/Action</th>
+          <th>Expected Result</th>
+          <th>Linked AC</th>
+          <th>TC-Ready</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>TS-001</td><td>Happy Path</td><td>P0</td><td>Show Past Due modal on My Evolve for eligible unpaid student after add/drop</td><td>My Evolve student, unpaid installment, included for billing, now past add/drop</td><td>Load My Evolve landing page</td><td>Red Past Due modal appears once for visit; red banner visible behind modal</td><td>AC-1, AC-2, AC-11</td><td>Yes</td></tr>
+        <tr><td>TS-002</td><td>Negative</td><td>P0</td><td>Do not show My Evolve modal in LMS flow</td><td>LMS-linked student with past-due installment</td><td>Launch via LMS link and reach payment request page</td><td>No My Evolve Past Due modal shown in LMS context for this story behavior</td><td>AC-1</td><td>Yes</td></tr>
+        <tr><td>TS-003</td><td>Boundary</td><td>P0</td><td>Immediate trigger right after add/drop crossing</td><td>Installment transitions from due to past due at threshold</td><td>Refresh around boundary time</td><td>Modal starts appearing immediately once threshold crossed</td><td>AC-2</td><td>Needs Clarification</td></tr>
+        <tr><td>TS-004</td><td>Alternate Happy Path</td><td>P0</td><td>Modal persists across visits while unpaid and eligible</td><td>Past due, unpaid, eligible</td><td>Dismiss modal, leave and revisit My Evolve</td><td>Modal reappears once per visit until payment or close window</td><td>AC-3, AC-5</td><td>Yes</td></tr>
+        <tr><td>TS-005</td><td>Negative</td><td>P0</td><td>No modal when student excluded from billing</td><td>Past due installment but excluded from billing</td><td>Load My Evolve</td><td>No Past Due modal shown</td><td>AC-3, AC-4</td><td>Yes</td></tr>
+        <tr><td>TS-006</td><td>Integration</td><td>P0</td><td>Re-added cohort conditions restore modal eligibility</td><td>Re-added after add/drop and before close date; unpaid; included for billing</td><td>Load My Evolve on next visit</td><td>Modal shown per-visit under re-added rules</td><td>AC-4</td><td>Yes</td></tr>
+        <tr><td>TS-007</td><td>Negative</td><td>P0</td><td>Re-added after window close does not show modal</td><td>Re-added but after 21-day close</td><td>Load My Evolve</td><td>No Past Due modal shown</td><td>AC-3, AC-4</td><td>Yes</td></tr>
+        <tr><td>TS-008</td><td>Happy Path</td><td>P0</td><td>Exact modal copy is rendered</td><td>Eligible past-due student on My Evolve</td><td>Open modal and inspect text</td><td>Headline/body/CTA match required wording exactly, including support phone</td><td>AC-6</td><td>Yes</td></tr>
+        <tr><td>TS-009</td><td>Integration</td><td>P0</td><td>CTA routes to installment-specific payment flow</td><td>Eligible student with specific past-due installment</td><td>Click Pay and regain access</td><td>Redirects to exact installment payment route used in emails</td><td>AC-9</td><td>Yes</td></tr>
+        <tr><td>TS-010</td><td>Boundary</td><td>P0</td><td>One-modal rule with multiple past-due installments</td><td>Student has two+ past-due installments</td><td>Open My Evolve</td><td>Single modal shown for most urgent installment (earliest add/drop)</td><td>AC-10</td><td>Yes</td></tr>
+        <tr><td>TS-011</td><td>Integration</td><td>P1</td><td>CTA remains tied to urgent installment in one-modal rule</td><td>Multiple past-due installments available</td><td>Click modal CTA</td><td>Payment flow opens for installment selected by urgency rule</td><td>AC-10, AC-9</td><td>Yes</td></tr>
+        <tr><td>TS-012</td><td>Negative</td><td>P1</td><td>No dollar amounts visible in modal</td><td>Past Due modal displayed</td><td>Review all modal text regions</td><td>No amount/tax values present in modal UI</td><td>AC-8</td><td>Yes</td></tr>
+        <tr><td>TS-013</td><td>Non-Functional</td><td>P1</td><td>Accessible red styling and warning icon</td><td>Past Due modal displayed</td><td>Check contrast, icon visibility, keyboard focus</td><td>Meets accessibility expectations and visual prominence</td><td>AC-7</td><td>Yes</td></tr>
+        <tr><td>TS-014</td><td>Boundary</td><td>P1</td><td>Modal stops after late-payment window closes</td><td>Eligible state advances beyond 21 days post add/drop</td><td>Revisit My Evolve</td><td>Modal no longer appears after close window</td><td>AC-3</td><td>Yes</td></tr>
+        <tr><td>TS-015</td><td>Integration</td><td>P2</td><td>Modal removed after successful payment and access restored</td><td>Student completes payment via modal CTA flow</td><td>Return to My Evolve after success</td><td>Past Due modal no longer appears; access regained</td><td>Epic context + AC-9</td><td>Yes</td></tr>
+        <tr><td>TS-016</td><td>Non-Functional</td><td>P2</td><td>Long school name wraps without truncation/overflow</td><td>School/cohort names exceed typical length</td><td>Display modal with long name</td><td>Text wraps cleanly without clipping; no ellipsis requirement assumed</td><td>Comment-derived [Inferred]</td><td>Yes</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      Clarification needed for TS-003: confirm exact boundary semantics for "immediately after add/drop" (timezone, scheduler cadence, and inclusive/exclusive threshold) so test timing can be deterministic.
+    </div>
+
+    <h2 class="section-title">Acceptance Coverage Matrix</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Acceptance Criterion</th>
+          <th>Scenario IDs</th>
+          <th>Coverage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>AC-1 My Evolve only</td><td>TS-001, TS-002</td><td>Covered</td></tr>
+        <tr><td>AC-2 Immediate start after add/drop</td><td>TS-003</td><td>Partial (timing clarification needed)</td></tr>
+        <tr><td>AC-3 Per-visit until paid or 21-day close</td><td>TS-004, TS-014</td><td>Covered</td></tr>
+        <tr><td>AC-4 Re-added conditions</td><td>TS-006, TS-007</td><td>Covered</td></tr>
+        <tr><td>AC-5 Dismissible one prompt per visit</td><td>TS-004</td><td>Covered</td></tr>
+        <tr><td>AC-6 Exact wording</td><td>TS-008</td><td>Covered</td></tr>
+        <tr><td>AC-7 Red style and warning icon</td><td>TS-013</td><td>Covered</td></tr>
+        <tr><td>AC-8 No dollar amounts</td><td>TS-012</td><td>Covered</td></tr>
+        <tr><td>AC-9 Installment-specific CTA route</td><td>TS-009, TS-011, TS-015</td><td>Covered</td></tr>
+        <tr><td>AC-10 One-modal urgency rule</td><td>TS-010, TS-011</td><td>Covered</td></tr>
+        <tr><td>AC-11 Red banner remains behind modal</td><td>TS-001</td><td>Covered</td></tr>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>
